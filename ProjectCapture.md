@@ -57,7 +57,7 @@ Don't Example:
 ### Input Requirements
 
 #### Definition of Inputs
-
+It is a CSV file, The column names are: Country Name, State Name, Name, Population.
 
 <!-- List here a type definition for each input. For example, if it is a CSV define the column names. If it is a JSON, give an example of the JSON structure. If it is user input, what will the user be asked for? -->
 
@@ -75,7 +75,7 @@ A file called citiesData.csv that I got off of github for this project.
 <!-- List here a type definition for each output? For example, if the changes are directly to the LMS, list all changes that occur. If it is a CSV define the column names. If it is a JSON, give an example of the JSON structure. -->
 
 #### Destination of Outputs
-
+To a JSON file(?)
 <!-- Paragraph where/who to send outputs. To who? To where: Email, server, directly to LMS...? It would also include the steps to get access to the locations you need, such as getting added to a Trello Board, or access to a server, or the LMS. -->
 
 ---
