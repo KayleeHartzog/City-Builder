@@ -6,22 +6,31 @@ let input = fs.readFileSync('./citiesData.csv', "utf8")
 // parse
 let cityArray = dsv.csvParse(input)
 
-//console.log(cityArray)
 // convert from 1 dimension to that other thing
 
 let newArray = []
-
-const result1 = cityArray.filter(country => country['Country Name'] == "Country1")
-
-//console.log(result1)
-
-let doReduce = result1.reduce(function (accumulator, currentValue) {
-   if (accumulator.includes(currentValue['State Name']) === false) {
-      accumulator.push(currentValue.name = currentValue["State Name"])
+cityArray.forEach(function(parseObj) {
+   if (newArray.includes(parseObj['Country Name']) === false) {
+      newArray.push(parseObj['Country Name'])
+      newArray.sort()
    }
-   accumulator.sort()
-   return accumulator
-}, [])
+})
+
+function countryNameToCountryObj(countryObj) {
+   return {
+      name: countryObj,
+      states: []
+   }
+}
+
+let countries = newArray.map(countryNameToCountryObj)
+
+
+const Country1 = cityArray.filter(country => country['Country Name'] == "Country1")
+const Country2 = cityArray.filter(country => country['Country Name'] == "Country2")
+const Country3 = cityArray.filter(country => country['Country Name'] == "Country3")
+const Country4 = cityArray.filter(country => country['Country Name'] == "Country4")
+const Country5 = cityArray.filter(country => country['Country Name'] == "Country5")
 
 function stateNameToStateObj(stateName) {
    return {
@@ -30,74 +39,133 @@ function stateNameToStateObj(stateName) {
    }
 }
 
-function cityNametoCityObj(cityName) {
-   return {
-      name : cityName
-      population : 
+/**************************************
+ * Work for Country 1
+ **************************************/
+let doReduce = Country1.reduce(function (accumulator, currentValue) {
+   if (accumulator.includes(currentValue['State Name']) === false) {
+      accumulator.push(currentValue.name = currentValue["State Name"])
    }
-}
-let states = doReduce.map(stateNameToStateObj)
-states.cities.map(cityNametoCityObj)
+   accumulator.sort()
+   return accumulator
+}, [])
 
-result1.forEach(function(originalObj) {
-   states.forEach(function (statesObj) {
+let objStates = doReduce.map(stateNameToStateObj)
+
+Country1.forEach(function(originalObj) {
+   objStates.forEach(function (statesObj) {
       if (originalObj["State Name"] === statesObj.name){
-         statesObj.cities.push(originalObj.Name, originalObj.Population)
+         let cityObj = {name : originalObj.Name, population : originalObj.Population}
+         statesObj.cities.push(cityObj)
          statesObj.cities.sort()
       }
    })
 })
 
- console.log(states)
+countries[0].states = objStates
 
+/**************************************
+ * Work for Country 2
+ **************************************/
+let doReduce2 = Country2.reduce(function (accumulator, currentValue) {
+   if (accumulator.includes(currentValue['State Name']) === false) {
+      accumulator.push(currentValue.name = currentValue["State Name"])
+   }
+   accumulator.sort()
+   return accumulator
+}, [])
 
+let objStates2 = doReduce2.map(stateNameToStateObj)
 
+Country2.forEach(function(originalObj) {
+   objStates2.forEach(function (statesObj) {
+      if (originalObj["State Name"] === statesObj.name){
+         let cityObj = {name : originalObj.Name, population : originalObj.Population}
+         statesObj.cities.push(cityObj)
+         statesObj.cities.sort()
+      }
+   })
+})
 
+countries[1].states = objStates2
 
+/**************************************
+ * Work for Country 3
+ **************************************/
+let doReduce3 = Country3.reduce(function (accumulator, currentValue) {
+   if (accumulator.includes(currentValue['State Name']) === false) {
+      accumulator.push(currentValue.name = currentValue["State Name"])
+   }
+   accumulator.sort()
+   return accumulator
+}, [])
 
+let objStates3 = doReduce3.map(stateNameToStateObj)
 
-// let doReduce2 = doReduce.reduce(function(accumulator2, currentValue2){
-//   accumulator2.Name = accumulator2[]
+Country3.forEach(function(originalObj) {
+   objStates3.forEach(function (statesObj) {
+      if (originalObj["State Name"] === statesObj.name){
+         let cityObj = {name : originalObj.Name, population : originalObj.Population}
+         statesObj.cities.push(cityObj)
+         statesObj.cities.sort()
+      }
+   })
+})
 
-//   return accumulator2
-// }, {})
+countries[2].states = objStates3
 
-//console.log(doReduce)
+/**************************************
+ * Work for Country 4
+ **************************************/
+let doReduce4 = Country4.reduce(function (accumulator, currentValue) {
+   if (accumulator.includes(currentValue['State Name']) === false) {
+      accumulator.push(currentValue.name = currentValue["State Name"])
+   }
+   accumulator.sort()
+   return accumulator
+}, [])
 
+let objStates4 = doReduce4.map(stateNameToStateObj)
 
-// newArray.push(result1)
+Country4.forEach(function(originalObj) {
+   objStates4.forEach(function (statesObj) {
+      if (originalObj["State Name"] === statesObj.name){
+         let cityObj = {name : originalObj.Name, population : originalObj.Population}
+         statesObj.cities.push(cityObj)
+         statesObj.cities.sort()
+      }
+   })
+})
 
-// console.log(newArray)
-// console.log(cityArray[0]['Country Name'])
+countries[3].states = objStates4
 
+/**************************************
+ * Work for Country 5
+ **************************************/
+let doReduce5 = Country5.reduce(function (accumulator, currentValue) {
+   if (accumulator.includes(currentValue['State Name']) === false) {
+      accumulator.push(currentValue.name = currentValue["State Name"])
+   }
+   accumulator.sort()
+   return accumulator
+}, [])
 
+let objStates5 = doReduce5.map(stateNameToStateObj)
 
+Country5.forEach(function(originalObj) {
+   objStates5.forEach(function (statesObj) {
+      if (originalObj["State Name"] === statesObj.name){
+         let cityObj = {name : originalObj.Name, population : originalObj.Population}
+         statesObj.cities.push(cityObj)
+         statesObj.cities.sort()
+      }
+   })
+})
 
+countries[4].states = objStates5
 
-
-
-
-
-
-
-
-// let doReduce = cityArray.reduce(function(accumulator, currentValue) {
-//   // console.log("accumulator: ", accumulator)
-//   // console.log("currentValue: ", currentValue)
-
-//  console.log("This is value: ", accumulator[currentValue['Country Name']])
-//   if (accumulator[currentValue['Country Name']] != undefined){ //undefined isn't goint to work, because Country Name will always have a value to it
-//   console.log("You made it!!\n")
-//   }
-//   else{
-//     //newArray.push(currentValue)
-//     accumulator.push(currentValue)
-//     //console.log("Accumulator: ", newArray, "\n")
-//     // console.log("Accumulator: ", accumulator)
-//   }
-//   return accumulator
-// }, [])
-
-// console.log(doReduce)
+console.log(countries)
 
 // print the json
+
+//https://stackabuse.com/reading-and-writing-json-files-with-node-js/
