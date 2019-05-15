@@ -6,27 +6,63 @@ let input = fs.readFileSync('./citiesData.csv', "utf8")
 // parse
 let cityArray = dsv.csvParse(input)
 
- //console.log(cityArray)
+//console.log(cityArray)
 // convert from 1 dimension to that other thing
 
 let newArray = []
 
 const result1 = cityArray.filter(country => country['Country Name'] == "Country1")
 
-let doReduce = result1.reduce(function(accumulator, currentValue) {
- if (accumulator.includes(currentValue['State Name']) === false) {
-    accumulator.push(currentValue.name = currentValue["State Name"])
- }
-//console.log(currentValue['State Name'])
-accumulator.sort()
+//console.log(result1)
 
-let doReduce2 = accumulator.reduce(function(accumulator2, currentValue2){
-  
-}, {})
-return accumulator
+let doReduce = result1.reduce(function (accumulator, currentValue) {
+   if (accumulator.includes(currentValue['State Name']) === false) {
+      accumulator.push(currentValue.name = currentValue["State Name"])
+   }
+   accumulator.sort()
+   return accumulator
 }, [])
 
-console.log(doReduce)
+function stateNameToStateObj(stateName) {
+   return {
+      name: stateName,
+      cities: []
+   }
+}
+
+function cityNametoCityObj(cityName) {
+   return {
+      name : cityName
+      population : 
+   }
+}
+let states = doReduce.map(stateNameToStateObj)
+states.cities.map(cityNametoCityObj)
+
+result1.forEach(function(originalObj) {
+   states.forEach(function (statesObj) {
+      if (originalObj["State Name"] === statesObj.name){
+         statesObj.cities.push(originalObj.Name, originalObj.Population)
+         statesObj.cities.sort()
+      }
+   })
+})
+
+ console.log(states)
+
+
+
+
+
+
+
+// let doReduce2 = doReduce.reduce(function(accumulator2, currentValue2){
+//   accumulator2.Name = accumulator2[]
+
+//   return accumulator2
+// }, {})
+
+//console.log(doReduce)
 
 
 // newArray.push(result1)
@@ -65,7 +101,3 @@ console.log(doReduce)
 // console.log(doReduce)
 
 // print the json
-
-
-
-
