@@ -16,12 +16,19 @@ cityArray.forEach(function(parseObj) {
    }
 })
 
+let copyNewArray = newArray
+
 function countryNameToCountryObj(countryObj) {
    return {
       name: countryObj,
       states: []
    }
 }
+
+// for (let i = 1; i < 6; i++) {
+//    let countrynum = "Country" + [i]
+//    console.log(countrynum)
+//}
 
 let countries = newArray.map(countryNameToCountryObj)
 
@@ -57,7 +64,12 @@ Country1.forEach(function(originalObj) {
       if (originalObj["State Name"] === statesObj.name){
          let cityObj = {name : originalObj.Name, population : originalObj.Population}
          statesObj.cities.push(cityObj)
-         statesObj.cities.sort()
+         statesObj.cities.sort((a, b) => {
+            if (a.name > b.name)
+               return 1
+            else
+               return -1
+         })
       }
    })
 })
@@ -82,7 +94,12 @@ Country2.forEach(function(originalObj) {
       if (originalObj["State Name"] === statesObj.name){
          let cityObj = {name : originalObj.Name, population : originalObj.Population}
          statesObj.cities.push(cityObj)
-         statesObj.cities.sort()
+         statesObj.cities.sort((a, b) => {
+            if (a.name > b.name)
+               return 1
+            else
+               return -1
+         })
       }
    })
 })
@@ -107,7 +124,12 @@ Country3.forEach(function(originalObj) {
       if (originalObj["State Name"] === statesObj.name){
          let cityObj = {name : originalObj.Name, population : originalObj.Population}
          statesObj.cities.push(cityObj)
-         statesObj.cities.sort()
+         statesObj.cities.sort((a, b) => {
+            if (a.name > b.name)
+               return 1
+            else
+               return -1
+         })
       }
    })
 })
@@ -132,7 +154,12 @@ Country4.forEach(function(originalObj) {
       if (originalObj["State Name"] === statesObj.name){
          let cityObj = {name : originalObj.Name, population : originalObj.Population}
          statesObj.cities.push(cityObj)
-         statesObj.cities.sort()
+         statesObj.cities.sort((a, b) => {
+            if (a.name > b.name)
+               return 1
+            else
+               return -1
+         })
       }
    })
 })
@@ -157,15 +184,23 @@ Country5.forEach(function(originalObj) {
       if (originalObj["State Name"] === statesObj.name){
          let cityObj = {name : originalObj.Name, population : originalObj.Population}
          statesObj.cities.push(cityObj)
-         statesObj.cities.sort()
+         statesObj.cities.sort((a, b) => {
+            if (a.name > b.name)
+               return 1
+            else
+               return -1
+         })
       }
    })
 })
 
 countries[4].states = objStates5
 
-console.log(countries)
+
 
 // print the json
+let finalThing = JSON.stringify(countries)
+fs.writeFileSync('arrayOfObjects.json', finalThing)
+
 
 //https://stackabuse.com/reading-and-writing-json-files-with-node-js/
