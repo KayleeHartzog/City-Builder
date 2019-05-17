@@ -7,17 +7,6 @@ let input = fs.readFileSync('./citiesData.csv', "utf8")
 let cityArray = dsv.csvParse(input)
 
 // convert from 1 dimension to that other thing
-
-let newArray = []
-cityArray.forEach(function(parseObj) {
-   if (newArray.includes(parseObj['Country Name']) === false) {
-      newArray.push(parseObj['Country Name'])
-      newArray.sort()
-   }
-})
-
-let copyNewArray = newArray
-
 function countryNameToCountryObj(countryObj) {
    return {
       name: countryObj,
@@ -25,12 +14,32 @@ function countryNameToCountryObj(countryObj) {
    }
 }
 
+function stateNameToStateObj(stateName) {
+   return {
+      name: stateName,
+      cities: []
+   }
+}
+
+let countries;
+
+let newArray = []
+cityArray.forEach(function(parseObj) {
+   if (newArray.includes(parseObj['Country Name']) === false) {
+      newArray.push(parseObj['Country Name'])
+      countries = newArray.map(countryNameToCountryObj)
+      newArray.sort()
+   }
+})
+
+let copyNewArray = newArray
+
+
 // for (let i = 1; i < 6; i++) {
 //    let countrynum = "Country" + [i]
 //    console.log(countrynum)
 //}
 
-let countries = newArray.map(countryNameToCountryObj)
 
 
 const Country1 = cityArray.filter(country => country['Country Name'] == "Country1")
@@ -39,12 +48,7 @@ const Country3 = cityArray.filter(country => country['Country Name'] == "Country
 const Country4 = cityArray.filter(country => country['Country Name'] == "Country4")
 const Country5 = cityArray.filter(country => country['Country Name'] == "Country5")
 
-function stateNameToStateObj(stateName) {
-   return {
-      name: stateName,
-      cities: []
-   }
-}
+console.log(Country1)
 
 /**************************************
  * Work for Country 1
